@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // Route to /parse/resume
-app.post('/parse/resume', (req, res) => {
+app.post('/', (req, res) => {
 
     const inputDir = process.env.SOURCE_DIR || process.cwd() + '/files/sources/'
     const fileName = req.body.filename
@@ -117,7 +117,7 @@ app.post('/parse/resume', (req, res) => {
 
 app.listen(PORT, (err) => {
     if(err) console.log("Error happened! "+err)
-    console.log('Server started! Listening on port: '+PORT)
+    console.log('Server started!! Listening on port: '+PORT)
 })
 
 module.exports = app
