@@ -21,9 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Route to /parse/resume
 app.post('/', (req, res) => {
 
-    const inputDir = process.env.SOURCE_DIR || process.cwd() + '/files/sources/'
+    const inputDir = process.cwd() + '/files/sources/' //process.env.SOURCE_DIR || 
     const fileName = req.body.filename
-    const outputDir = process.env.OUTPUT_DIR || process.cwd()+'/files/compiled/'
+    const outputDir = process.cwd()+'/files/compiled/' //process.env.OUTPUT_DIR || 
     
     let removeSourceFile = req.body.remove_source_file || false
     let customMessage = {}
@@ -31,6 +31,7 @@ app.post('/', (req, res) => {
 
     // Check request is correct 
     if (!req.body.hasOwnProperty('filename')) {
+        console.log('come inside checking filename existed');
         processFailed = true
         customMessage = {
             success: false,
@@ -40,6 +41,7 @@ app.post('/', (req, res) => {
     
     // Check file exist
     else if (!fs.existsSync(inputDir + fileName)) {
+        console.log('inside existSync',inputDir + fileName);
         processFailed = true
         customMessage = {
             success: false,
@@ -47,6 +49,7 @@ app.post('/', (req, res) => {
         }
     }
     if(processFailed === true) {
+        console.log('customMessage--',customMessage);
         return res
             .status(406)
             .json(customMessage)
