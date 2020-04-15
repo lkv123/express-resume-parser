@@ -57,7 +57,7 @@ app.post('/parse/resume', (req, res) => {
     ResumeParser
         .parseResumeFile(inputDir + fileName, outputDir) //input file, output dir
         .then(file => {
-            result = JSON.parse(fs.readFileSync(outputDir + fileName + '.json', 'utf8'))
+            result = JSON.parse(fs.readFileSync(outputDir + fileName + '.json', 'utf8')) 
             
             // Remove source file
             console.log('remove source file : '+removeSourceFile)
